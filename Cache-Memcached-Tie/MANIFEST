@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Cache-Memcached-Tie.t
+lib/Cache/Memcached/Tie.pm

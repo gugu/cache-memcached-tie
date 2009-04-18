@@ -1,0 +1,11 @@
+name:         Cache-Memcached-Tie
+version:      0.02
+version_from: lib/Cache/Memcached/Tie.pm
+installdirs:  site
+requires:
+    Cache::Memcached:  0
+    XML::Simple:       0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.21
+license: GPL
