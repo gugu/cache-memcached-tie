@@ -7,7 +7,7 @@ use AutoLoader qw(AUTOLOAD);
 
 use base 'Cache::Memcached';
 use vars qw($VERSION);
-$VERSION = '0.03';
+$VERSION = '0.04';
 
 use fields qw(default_expire_seconds);
 
@@ -73,7 +73,7 @@ Cache::Memcached::Tie - Using Cache::Memcached as hash
     my $memd=tie %hash,'Cache::Memcached::Tie', {servers=>['192.168.0.77:11211']};
     $hash{b}=['a',{b=>'a'}];
     print $hash{'a'};
-    print $memd->get('b');
+    print $memd->memd->get('b');
 
 =head1 DESCRIPTION
 
