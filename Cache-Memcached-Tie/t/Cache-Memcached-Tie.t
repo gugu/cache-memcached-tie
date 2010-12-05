@@ -1,15 +1,20 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl Cache-Memcached-Tie.t'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-use Test::More tests => 1;
-BEGIN { use_ok('Cache::Memcached::Tie') };
-
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
-
+use Test::More;
+use lib 't';
+use Memd;
+use Cache::Memcached::Tie;
+use Memd;
+my $memd = \%Memd::memd;
+if ( !$Memd::error) {
+    diag("Connected to " . scalar @Memd::addr
+         . " memcached servers, lowest version $Memd::version_str");
+    plan tests => 4;
+    pass('connected');
+    $memd->{ 'test1' } = 'value1';
+    is $memd->{'test1'}, 'value1';
+    (@$memd{ 'a' .. 'z' }) = (1 .. 26);
+    is_deeply [ @$memd{ 'a'.. 'e' }], [ 1 .. 5 ];
+    delete $memd->{'test1'};
+    ok ! $memd->{'test1'};
+} else {
+    plan skip_all => $Memd::error;
+}
